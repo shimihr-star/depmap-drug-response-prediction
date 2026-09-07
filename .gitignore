@@ -1,0 +1,15 @@
+# Large/local datasets
+data/
+
+# PyCharm
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db
+
+~$*.docx
