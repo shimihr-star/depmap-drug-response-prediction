@@ -1,0 +1,11 @@
+Drug: teniposide
+Model: Elastic Net
+
+MAE: 0.131989
+RMSE: 0.162334
+R2: 0.128847
+CV RMSE: 0.139143
+Train R2: 0.441800
+
+Best parameters:
+{'elastic_net__alpha': 1, 'elastic_net__l1_ratio': 0.01}

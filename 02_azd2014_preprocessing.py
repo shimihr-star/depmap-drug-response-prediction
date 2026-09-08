@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
-
+from drug_screening import screen_drug
 
 # AZD2014 (vistusertib) is an experimental anti-cancer drug that inhibits mTOR,
 # specifically both the mTORC1 and mTORC2 signaling complexes. The mTOR pathway
@@ -43,6 +43,7 @@ import matplotlib.pyplot as plt
 expression = pd.read_csv( r"data\OmicsExpressionTPMLogp1HumanProteinCodingGenes.csv")
 drug_response = pd.read_csv( r"data\prism-repurposing-20q2-secondary-screen-dose-response-curve-parameters.csv")
 
+results = screen_drug(expression, drug_response, "AZD2014", enet=True, svr=True, rf=False)
 # ============================================================
 # 2. EXTRACT AZD2014 MEASUREMENTS
 # ============================================================

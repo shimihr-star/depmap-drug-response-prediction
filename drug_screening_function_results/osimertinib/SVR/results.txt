@@ -1,0 +1,11 @@
+Drug: osimertinib
+Model: SVR
+
+MAE: 0.054668
+RMSE: 0.071003
+R2: 0.147275
+CV RMSE: 0.090628
+Train R2: 0.636932
+
+Best parameters:
+{'svr__C': 0.1, 'svr__epsilon': 0.01, 'svr__gamma': 'scale'}

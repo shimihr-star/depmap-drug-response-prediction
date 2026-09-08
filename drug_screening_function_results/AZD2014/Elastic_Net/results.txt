@@ -1,0 +1,11 @@
+Drug: AZD2014
+Model: Elastic Net
+
+MAE: 0.075449
+RMSE: 0.093302
+R2: 0.029354
+CV RMSE: 0.088093
+Train R2: 0.181201
+
+Best parameters:
+{'elastic_net__alpha': 0.1, 'elastic_net__l1_ratio': 0.1}

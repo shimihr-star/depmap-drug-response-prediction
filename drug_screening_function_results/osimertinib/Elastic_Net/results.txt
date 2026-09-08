@@ -1,0 +1,11 @@
+Drug: osimertinib
+Model: Elastic Net
+
+MAE: 0.057247
+RMSE: 0.073494
+R2: 0.086413
+CV RMSE: 0.091739
+Train R2: 0.273578
+
+Best parameters:
+{'elastic_net__alpha': 1, 'elastic_net__l1_ratio': 0.01}

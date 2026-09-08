@@ -1,0 +1,11 @@
+Drug: teniposide
+Model: SVR
+
+MAE: 0.131169
+RMSE: 0.165655
+R2: 0.092839
+CV RMSE: 0.137408
+Train R2: 0.995551
+
+Best parameters:
+{'svr__C': 1, 'svr__epsilon': 0.01, 'svr__gamma': 'scale'}

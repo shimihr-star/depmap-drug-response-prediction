@@ -1,0 +1,11 @@
+Drug: floxuridine
+Model: SVR
+
+MAE: 0.108439
+RMSE: 0.138263
+R2: 0.137909
+CV RMSE: 0.159256
+Train R2: 0.978590
+
+Best parameters:
+{'svr__C': 1, 'svr__epsilon': 0.01, 'svr__gamma': 'scale'}

@@ -124,6 +124,7 @@ drug_response_overlap = drug_response[drug_response["depmap_id"].isin(overlap_ce
 # both a drug-response measurement and RNA-seq expression data.
 drug_counts_overlap = (drug_response_overlap.groupby("name")["depmap_id"].nunique().sort_values(ascending=False))
 drug_counts_overlap.head(20)
+drug_counts_overlap.to_csv(r"G:\My Drive\Shimon\stuffs\Data_Science_New_way\Portfolio\Self_projects\Project_3_drug_response_cancer\data\data_I created\drug_counts_overlap.csv")
 
 
 # ============================================================

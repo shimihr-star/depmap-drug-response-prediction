@@ -1,0 +1,11 @@
+Drug: AZD2014
+Model: SVR
+
+MAE: 0.075667
+RMSE: 0.093898
+R2: 0.016910
+CV RMSE: 0.088032
+Train R2: 0.645226
+
+Best parameters:
+{'svr__C': 0.1, 'svr__epsilon': 0.05, 'svr__gamma': 'scale'}

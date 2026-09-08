@@ -1,0 +1,8 @@
+,value
+n_train,612.0
+n_test,108.0
+test_size,0.15
+random_state,101.0
+cv_folds,5.0
+test_auc_mean,0.6652256625104556
+test_auc_std,0.09514330196214078

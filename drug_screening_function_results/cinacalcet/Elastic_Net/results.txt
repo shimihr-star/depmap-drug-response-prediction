@@ -1,0 +1,11 @@
+Drug: cinacalcet
+Model: Elastic Net
+
+MAE: 0.041207
+RMSE: 0.054904
+R2: -0.000300
+CV RMSE: 0.062940
+Train R2: 0.000000
+
+Best parameters:
+{'elastic_net__alpha': 0.1, 'elastic_net__l1_ratio': 0.3}
