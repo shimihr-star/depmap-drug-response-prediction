@@ -56,13 +56,11 @@ X_train_pca = pca.fit_transform(X_train_scaled)
 pca.explained_variance_ratio_
 cumulative_variance = np.cumsum(pca.explained_variance_ratio_)
 
-plt.plot(range(1, len(cumulative_variance) + 1),
-         cumulative_variance)
+plt.plot(range(1, len(cumulative_variance) + 1),cumulative_variance)
 
 plt.xlabel('Number of Principal Components')
 plt.ylabel('Cumulative Explained Variance')
 plt.show()
-
 plt.scatter(X_train_pca[:, 0], y_train)
 plt.xlabel("PC1")
 plt.ylabel("AZD2014 AUC")
@@ -70,7 +68,6 @@ plt.show()
 
 # make 100 scatterplots. Calculate the correlation of each PC with AUC:
 correlations = [np.corrcoef(X_train_pca[:, i], y_train)[0, 1]for i in range(X_train_pca.shape[1])]
-
 plt.plot(range(1, len(correlations) + 1), correlations)
 plt.xlabel("Principal Component")
 plt.ylabel("Correlation with AZD2014 AUC")
@@ -85,22 +82,10 @@ sns.displot(data=modeling_data, x='auc')
 # ============================================================
 # 4.1. MODELING - - Linear Regression with elastic net
 # ============================================================
-pipe = Pipeline([
-    ('scaler', StandardScaler()),
-    ('elastic_net', ElasticNet(max_iter=20000)),
-])
+pipe = Pipeline([('scaler', StandardScaler()), ('elastic_net', ElasticNet(max_iter=20000)),])
 
-param_grid = {
-    'elastic_net__alpha': [0.001, 0.01, 0.1, 1, 10],
-    'elastic_net__l1_ratio': [0.01, 0.05, 0.1, 0.3, 0.5, 0.7, 1]
-}
-grid_model = GridSearchCV(
-    estimator=pipe,
-    param_grid=param_grid,
-    cv=5,
-    scoring='neg_root_mean_squared_error',
-    n_jobs=-1
-)
+param_grid = {'elastic_net__alpha': [0.001, 0.01, 0.1, 1, 10], 'elastic_net__l1_ratio': [0.01, 0.05, 0.1, 0.3, 0.5, 0.7, 1]}
+grid_model = GridSearchCV(estimator=pipe, param_grid=param_grid, cv=5, scoring='neg_root_mean_squared_error', n_jobs=-1)
 grid_model.fit(X_train, y_train)
 grid_model.best_params_  # {'elastic_net__alpha': 0.1, 'elastic_net__l1_ratio': 0.1}
 
@@ -121,10 +106,8 @@ MAE = mean_absolute_error(y_test, pred)
 RMSE = np.sqrt(mean_squared_error(y_test, pred))
 print(f'MAE:',MAE)
 print(f'RMSE:', RMSE)
-
 r2 = r2_score(y_test, pred)
 print("R2:", r2)
-
 residuals = y_test - pred
 plt.scatter(pred, residuals)
 plt.axhline(y=0, linestyle='--')
@@ -135,7 +118,6 @@ plt.show()
 
 
 best_enet = grid_model.best_estimator_.named_steps['elastic_net']
-
 print("Iterations:", best_enet.n_iter_)
 print("Non-zero coefficients:", np.sum(best_enet.coef_ != 0))
 print("Total coefficients:", len(best_enet.coef_))
@@ -171,23 +153,11 @@ plt.show()
 # ============================================================
 # 4.2. Modeling - - SVR
 # ============================================================
-pipe_svr = Pipeline([
-    ('scaler', StandardScaler()),
-    ('svr', SVR(kernel='rbf'))
-])
+pipe_svr = Pipeline([('scaler', StandardScaler()), ('svr', SVR(kernel='rbf'))])
 
-param_grid_svr = {
-    'svr__C': [0.1, 1, 10, 100],
-    'svr__gamma': ['scale', 0.001, 0.01, 0.1],
-    'svr__epsilon': [0.01, 0.05, 0.1]
-}
+param_grid_svr = {'svr__C': [0.1, 1, 10, 100], 'svr__gamma': ['scale', 0.001, 0.01, 0.1], 'svr__epsilon': [0.01, 0.05, 0.1]}
 
-grid_svr = GridSearchCV(
-    pipe_svr,
-    param_grid_svr,
-    cv=5,
-    scoring='neg_root_mean_squared_error',
-    n_jobs=-1)
+grid_svr = GridSearchCV(pipe_svr, param_grid_svr, cv=5, scoring='neg_root_mean_squared_error', n_jobs=-1)
 
 grid_svr.fit(X_train, y_train)
 
@@ -220,21 +190,9 @@ print("R2:", r2_svr)
 # ============================================================
 rf = RandomForestRegressor(random_state=42,n_jobs=-1)
 
-param_grid_rf = {
-    'n_estimators': [300, 500],
-    'max_features': ['sqrt', 0.1, 0.3],
-    'max_depth': [None, 10, 20],
-    'min_samples_leaf': [1, 3, 5]
-}
+param_grid_rf = {'n_estimators': [300, 500],'max_features': ['sqrt', 0.1, 0.3],'max_depth': [None, 10, 20],'min_samples_leaf': [1, 3, 5]}
 
-grid_rf = GridSearchCV(
-    estimator=rf,
-    param_grid=param_grid_rf,
-    cv=5,
-    scoring='neg_root_mean_squared_error',
-    n_jobs=-1
-)
-
+grid_rf = GridSearchCV(estimator=rf, param_grid=param_grid_rf, cv=5, scoring='neg_root_mean_squared_error', n_jobs=-1)
 grid_rf.fit(X_train, y_train)
 grid_rf.best_params_
 # {'max_depth': None, 'max_features': 0.3, 'min_samples_leaf': 1, 'n_estimators': 300}

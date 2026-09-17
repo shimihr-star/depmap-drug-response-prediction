@@ -1,15 +1,28 @@
-# Large/local datasets
+# Data files
 data/
+
+# Detailed generated screening outputs
+results/drug_screening/
+
+# Python cache
+__pycache__/
+*.py[cod]
 
 # PyCharm
 .idea/
 
-# Python
-__pycache__/
-*.pyc
+# Jupyter
+.ipynb_checkpoints/
 
 # OS files
 .DS_Store
 Thumbs.db
 
+# Temporary Microsoft Office files
 ~$*.docx
+
+# Logs / temporary files
+*.log
+*.tmp
+
+drug_screening_function_results/
