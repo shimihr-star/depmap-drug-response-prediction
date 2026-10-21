@@ -21,6 +21,30 @@ The project began with **AZD2014 (vistusertib)** as a detailed case study. After
 
 ---
 
+## Project Workflow
+
+The project follows two connected stages: an initial single-drug case study and a reusable multi-drug screening workflow.
+
+```mermaid
+flowchart TD
+    A[DepMap RNA-seq expression] --> C[Match cell lines by DepMap identifiers]
+    B[PRISM 20Q2 drug-response AUC] --> C
+    C --> D[Resolve repeated measurements and default expression profiles]
+    D --> E[Remove metadata and zero-variance genes]
+    E --> F[AZD2014 case study: 720 cell lines, 19,206 genes]
+    F --> G[Train/test split and 5-fold CV]
+    G --> H[Elastic Net / RBF-SVR / Random Forest]
+    H --> I[Evaluate RMSE, R² and mean-only baseline]
+    I --> J[Weak AZD2014 predictability motivates broader screening]
+    J --> K[Reusable screen_drug pipeline]
+    K --> L[Exploratory screening across 13 selected drugs]
+    L --> M[Compare performance and identify candidates for further validation]
+```
+
+> **Main finding:** For AZD2014, baseline gene expression alone had limited predictive power on held-out cell lines (best test R² ≈ 0.075). This result motivated exploratory screening of additional drugs rather than a claim of strong prediction for all compounds.
+
+---
+
 ## Data
 
 The project uses DepMap datasets containing:
